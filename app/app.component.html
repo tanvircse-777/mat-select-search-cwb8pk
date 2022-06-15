@@ -1,0 +1,49 @@
+<mat-toolbar color="primary">
+  Angular Material 2 App
+</mat-toolbar>
+<div class="basic-container">
+  <p>
+    <button mat-button>Basic Button</button>
+    <mat-slide-toggle>Slide Toggle</mat-slide-toggle>
+  </p>
+  <h2>Single selection</h2>
+  <p>
+    <mat-form-field>
+      <mat-select [formControl]="bankCtrl" placeholder="Bank" #singleSelect>
+        <mat-select-search [formControl]="bankFilterCtrl"></mat-select-search>
+        <mat-option *ngFor="let bank of filteredBanks | async" [value]="bank">
+          {{bank.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+  <p>
+    Selected Bank: {{bankCtrl.value?.name}}
+  </p>
+
+  <h2>Multiple selection</h2>
+  <p>
+    <mat-form-field>
+      <mat-select [formControl]="bankMultiCtrl" placeholder="Banks" [multiple]="true">
+        <mat-select-search [formControl]="bankMultiFilterCtrl"></mat-select-search>
+        <mat-option *ngFor="let bank of filteredBanksMulti | async" [value]="bank">
+          {{bank.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </p>
+  <p>
+    Selected Banks: 
+  </p>
+  <ul *ngFor="let bank of bankMultiCtrl?.value">
+    <li>{{bank.name}}</li>
+  </ul>
+  <span class="version-info">Current build: {{version.full}}</span>
+</div>
+
+<!--
+Copyright Google LLC All Rights Reserved.
+
+Use of this source code is governed by an MIT-style license that can be
+found in the LICENSE file at https://angular.io/license
+-->
